@@ -1,0 +1,30 @@
+body {
+    margin-left:  150px;
+    margin-right: 150px;
+}
+.navbar {
+    margin: auto;
+}
+.container { 
+    padding: 0;
+}
+nav {
+    border: 1px solid lightgrey;
+    width: 100%;
+    min-height: 100px;
+}
+
+.login-btn {
+    text-align: right;
+}
+#location-info {
+    color: darkslateblue;
+    background-color:#f8f9fa;
+    border: 1px solid lightgrey;
+}
+.btn{
+    background-color: darkslateblue;
+}
+.btn:hover{
+    background-color: rgb(97, 84, 180);
+}
