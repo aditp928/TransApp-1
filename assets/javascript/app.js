@@ -1,5 +1,5 @@
 var currentTime = moment();
-var currentDate = moment(currentTime).format("hh:mm");
+var currentDate = moment(currentTime).format("MMMM Do YYYY, h:mm:ss a");
 
 var weatherAPIKey = "f3b57377fd45d3c75ef5eb8b659e8ad3";
 // Here we can set the var city to a value coming from the flight tracker API
@@ -22,3 +22,5 @@ $.ajax({
       console.log(response);
       console.log(currentDate)
   });
+
+$("#location-info").text(currentDate);
