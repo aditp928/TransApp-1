@@ -1,5 +1,6 @@
 var currentTime = moment();
-var currentDate = moment(currentTime).format("hh:mm");
+var currentDate = moment(currentTime).format("DD MMM YYYY");
+var time = moment(currentTime).format("h:mm A")
 
 var weatherAPIKey = "f3b57377fd45d3c75ef5eb8b659e8ad3";
 // Here we can set the var city to a value coming from the flight tracker API
@@ -20,5 +21,9 @@ $.ajax({
   // We store all of the retrieved data inside of this "response"
   .then(function(response) {
       console.log(response);
+      console.log("Location: "+ response.name + " lat: "+response.coord.lat+ " lon: " +response.coord.lon);
       console.log(currentDate)
-  });
+      $("#time-info").append("<div>TODAY: " + currentDate +"</div><div>"+time+"</div>");
+      $("#location-info").append("Location: "+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon);
+      $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div>")
+    });
