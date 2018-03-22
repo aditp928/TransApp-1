@@ -7,6 +7,10 @@ body {
 }
 .container { 
     padding: 0;
+<<<<<<< HEAD
+=======
+    font-size: 16pt;
+>>>>>>> 77dfbe316e76f5f18e0f162854012355028efaa1
 }
 nav {
     border: 1px solid lightgrey;
@@ -21,10 +25,21 @@ nav {
     color: darkslateblue;
     background-color:#f8f9fa;
     border: 1px solid lightgrey;
+<<<<<<< HEAD
+=======
+    
+    padding: 10px;
+>>>>>>> 77dfbe316e76f5f18e0f162854012355028efaa1
 }
 .btn{
     background-color: darkslateblue;
 }
 .btn:hover{
     background-color: rgb(97, 84, 180);
+<<<<<<< HEAD
+=======
+}
+#time-weather{
+    min-height: 150px; 
+>>>>>>> 77dfbe316e76f5f18e0f162854012355028efaa1
 }
