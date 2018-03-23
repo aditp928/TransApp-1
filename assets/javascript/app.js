@@ -9,7 +9,7 @@ var city = "";
 // "city" must be city,state format to populate URL correctly. Ex below for console.log
 city = "orlando,florida";
 // Here we are building the URL we need to query the database
-var weatherURL = "https://api.openweathermap.org/data/2.5/weather?" +
+var weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
   "q=" + city +"&units=imperial&appid=" + weatherAPIKey;
   console.log(weatherURL);
 
