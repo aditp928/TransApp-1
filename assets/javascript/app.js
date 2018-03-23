@@ -25,7 +25,7 @@ $.ajax({
       console.log(currentDate)
       $("#time-info").append("<div>TODAY: " + currentDate +"</div><div>"+time+"</div>");
       $("#location-info").append("Location: "+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon);
-      $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div><div><img src='https://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>");
+      $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div><div><img src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>");
       console.log(response.weather[0].icon);
       
       // "+ response.weather[0].icon +"
