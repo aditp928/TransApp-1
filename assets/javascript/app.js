@@ -54,7 +54,7 @@ $.ajax({
   }
 )
 
-
+//function that adds markers to the google maps. 
 function mapMarkers() {
   for (var i = 0; i < results.length; i++) {
 
@@ -70,9 +70,9 @@ function mapMarkers() {
     });
   }
 }
-
+// Creates the google maps on the page
 var map;
- 
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
