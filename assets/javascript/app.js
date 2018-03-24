@@ -30,3 +30,18 @@ $.ajax({
       
       // "+ response.weather[0].icon +"
     });
+
+    $.ajax({
+      url: "http://services.swpc.noaa.gov/products/noaa-estimated-planetary-k-index-1-minute.json",
+      method: "GET"
+    })
+    .then(function(response){
+      console.log(response[response.length-1][1]);
+      if (response[response.length-1][1] <5) {
+        $("#location-info").append("<div> The K index is "+ response[response.length-1][1] + ". Safe to fly.</div>");
+      }
+      else {
+        $("#location-info").append("<div> The K index is "+ response[response.length-1][1]+ ". Not safe to fly.</div>");
+      }
+
+    })
