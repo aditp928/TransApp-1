@@ -30,3 +30,16 @@ $.ajax({
       
       // "+ response.weather[0].icon +"
     });
+
+    var map;
+ 
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 28.54,
+                lng: -81.38
+            },
+            zoom: 8
+        });
+        
+    } 
