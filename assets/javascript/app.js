@@ -10,15 +10,16 @@ var city = "";
 city = "orlando,florida";
 // Here we are building the URL we need to query the database
 var weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
-  "q=" + city +"&units=imperial&appid=" + weatherAPIKey;
-  console.log(weatherURL);
+  "q=" + city + "&units=imperial&appid=" + weatherAPIKey;
+console.log(weatherURL);
 
 // Here we run our AJAX call to the OpenWeatherMap API
 $.ajax({
-  url: weatherURL,
-  method: "GET"
-})
+    url: weatherURL,
+    method: "GET"
+  })
   // We store all of the retrieved data inside of this "response"
+<<<<<<< Updated upstream
   .then(function(response) {
       console.log(response);
       console.log("Location: "+ response.name + " lat: "+response.coord.lat+ " lon: " +response.coord.lon);
@@ -30,3 +31,17 @@ $.ajax({
       
       // "+ response.weather[0].icon +"
     });
+=======
+  .then(function (response) {
+    console.log(response);
+    console.log("Location: " + response.name + " lat: " + response.coord.lat + " lon: " + response.coord.lon);
+    console.log(currentDate)
+    $("#time-info").append("<div>TODAY: " + currentDate + "</div><div>" + time + "</div>");
+    $("#location-info").append("Location: " + response.name + ", lat: " + response.coord.lat + " lon: " + response.coord.lon);
+    $("#weather-info").append("<div>Temperature: " + response.main.temp + "</div><div>Wind Speed: " + response.wind.speed + "</div><div>" + response.weather[0].description + "</div><div><img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png'></div>");
+    console.log(response.weather[0].icon);
+
+    // "+ response.weather[0].icon +"
+  });
+
+>>>>>>> Stashed changes
