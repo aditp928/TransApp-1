@@ -34,3 +34,8 @@ nav {
 #time-weather{
     min-height: 150px; 
 }
+
+#map{
+    height:500px;
+    width:100%;
+}
