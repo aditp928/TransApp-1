@@ -81,7 +81,8 @@ function mapMarkers() {
 
     var marker = new google.maps.Marker({
       position: latlng,
-      map: map
+      map: map,
+      icon: "https://cdn2.iconfinder.com/data/icons/fatcow/32x32/plane.png"
     });
   }
 }
