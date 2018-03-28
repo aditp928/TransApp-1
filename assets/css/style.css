@@ -19,8 +19,8 @@ nav {
     text-align: right;
 }
 #location-info {
-    color: darkslateblue;
-    background-color:#f8f9fa;
+    background-color: rgb(115, 97, 228);
+    color:white;
     border: 1px solid lightgrey;
     
     padding: 10px;
@@ -39,4 +39,41 @@ nav {
     height:500px;
     width:100%;
 
+}
+a{
+    color: white;
+}
+a:hover{
+    color: white;
+    text-decoration: none;
+}
+#k-safe{
+    color: green;
+    font-weight: 400;
+}
+#k-not-safe{
+    color: red;
+    font-weight: 900;
+    font-size: 20px;
+}
+.card {
+    text-align: center;
+    margin: none;
+    padding: none;
+}
+#weather-icon{
+    height: 50px;
+}
+.card-header{
+    background-color: white;
+}
+.card-title{
+    line-height: 100%;
+}
+.col{
+    padding-right: 0px;;
+    padding-left: 0px;
+}
+.card-body{
+    background-color: #f8f9fa;
 }

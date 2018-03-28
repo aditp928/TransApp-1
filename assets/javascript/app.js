@@ -25,9 +25,10 @@ $.ajax({
       console.log(response);
       console.log("Location: "+ response.name + " lat: "+response.coord.lat+ " lon: " +response.coord.lon);
       console.log(currentDate)
-      $("#time-info").append("<div>TODAY: " + currentDate +"</div><div>"+time+"</div>");
-      $("#location-info").append("Location: "+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon);
-      $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div><div><img src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>");
+      $("#time-info").append("<div>" + currentDate +"</div><div>"+time+"</div>");
+      $("#location-info").append("<div>Location: "+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon + "</div>");
+      $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div>");
+      $("#weather-header").append("<div><img id='weather-icon'src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>")
       console.log(response.weather[0].icon);
       
       // "+ response.weather[0].icon +"
@@ -41,10 +42,11 @@ $.ajax({
     .then(function(response){
       console.log(response[response.length-1][1]);
       if (response[response.length-1][1] <5) {
-        $("#location-info").append("<div> The K index is "+ response[response.length-1][1] + ". Safe to fly.</div>");
+        $("#k-info").append("<div id='k-safe'> The Planetary K-index is "+ response[response.length-1][1] + ". Safe to fly.</div>");
+        $("#k-header").append("<div><img src=assets/images/safe.jpg></div>")
       }
       else {
-        $("#location-info").append("<div> The K index is "+ response[response.length-1][1]+ ". Not safe to fly.</div>");
+        $("#k-info").append("<div id='k-not-safe'> The K index is "+ response[response.length-1][1]+ ". Not safe to fly.</div>");
       }
 
     })
