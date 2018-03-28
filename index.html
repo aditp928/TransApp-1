@@ -64,12 +64,44 @@
             
         </div>
         <div class="row" id="location-info"></div>
-        <div class="row" id="time-weather">
-            <div class = "col" id="time-info"></div>
-            <div class = "col" id="weather-info">
-                <div id = "icon-area"></div>
+        <div class="card-group row">
+                <!-- time area -->
+                <div class="card border-light col" >
+                    <div class="card-header">
+                        <div>
+                            <img src="assets/images/clock.png"alt="clock icon">
+                            <h3 class="card-title">Today</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        
+                        <p id="time-info"></p>
+                    </div>
+                </div>
+
+                <!-- k-index area -->
+                <div class="card border-light col" >
+                    <div class="card-header">
+                        <div id="k-header"></div>
+                        <h3 class="card-title">K-index</h3>
+                    </div>
+                    <div class="card-body">
+                        <p id="k-info"></p>
+                    </div>
+                </div>
+
+                <!-- weather info -->
+                <div class="card border-light col" >
+                    <div class="card-header">
+                        <div id="weather-header"></div>
+                        <h3 class="card-title">Weather</h3>
+                    </div>
+                    <div class="card-body">                        
+                        <p id="weather-info"></p>
+                    </div>
+                </div>
+        
             </div>
-        </div>
         
         <div id="map">
         </div>
