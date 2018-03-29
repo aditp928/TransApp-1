@@ -322,4 +322,5 @@ $("#reset").on("click", function(){
   $("#map").replaceWith(mapreset.clone())
   $("#map").replaceWith(mapreset);
   initMap();
+  mapMarkers();
 });
