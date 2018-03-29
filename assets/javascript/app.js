@@ -27,8 +27,8 @@ $.ajax({
       console.log("<div><br>"+ response.name + " lat: "+response.coord.lat+ " lon: " +response.coord.lon + "</div>");
       console.log(currentDate)
       $("#time-info").append("<div>" + currentDate +"</div><div>"+time+"</div>");
-      $("#location-info").append("<div>"+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon + "</div>");
-      $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div>");
+      $("#location-info").append("<div>"+ response.name + ", lattitude: "+response.coord.lat+ " longitude: " +response.coord.lon + "</div>");
+      $("#weather-info").append("<div>Temperature: " + response.main.temp +"F&#176;</div><div>Wind Speed: "+ response.wind.speed +"mph</div><div>"+ response.weather[0].description +"</div>");
       $("#weather-header").append("<div><img id='weather-icon'src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>")
       console.log(response.weather[0].icon);
       
