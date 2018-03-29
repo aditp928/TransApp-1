@@ -2,21 +2,45 @@ var currentTime = moment();
 var currentDate = moment(currentTime).format("DD MMM YYYY");
 var time = moment(currentTime).format("h:mm A")
 var results=[];
+
 var weatherAPIKey = "4b6c7091744da6c1ad4dcd9d3603fd15";
+
 // Here we can set the var city to a value coming from the flight tracker API
 // We can associate the ajax call to an on-click so that the city info can populate
-var city = "";
+var city = "Orlando";
+var state = "Florida";
+place = city + "," + state;
+console.log(place);
+
 // "city" must be city,state format to populate URL correctly. Ex below for console.log
-city = "orlando,florida";
+
 // Here we are building the URL we need to query the database
 var weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
-  "q=" + city +"&units=imperial&appid=" + weatherAPIKey;
+  "q=" + place +"&units=imperial&appid=" + weatherAPIKey;
+  console.log(weatherURL);
+var user = "";
+
+$("#changePlace").on("click", function(){
+  event.preventDefault();
+
+  city = $("#cityInput").val();
+  state = $("#stateInput").val();
+  place = city + "," + state;
+
+  weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
+    "q=" + place + "&units=imperial&appid=" + weatherAPIKey;
   console.log(weatherURL);
 
-  var infowindow = null;
- 
+  clearInfo();
+  setInfo();
+
+  console.log(city);
+  console.log(state);
+});
+
 // Here we run our AJAX call to the OpenWeatherMap API
-$.ajax({
+function setInfo() {
+  $.ajax({
   url: weatherURL,
   method: "GET"
 })
@@ -31,6 +55,14 @@ $.ajax({
       $("#weather-info").append("<div>Temperature: " + response.main.temp +"F&#176;</div><div>Wind Speed: "+ response.wind.speed +"mph</div><div>"+ response.weather[0].description +"</div>");
       $("#weather-header").append("<div><img id='weather-icon'src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>")
       console.log(response.weather[0].icon);
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: response.coord.lat,
+          lng: response.coord.lon,
+        },
+        zoom: 8
+      });
       
       // "+ response.weather[0].icon +"
     });
@@ -51,7 +83,18 @@ $.ajax({
       }
 
     })
+  }
 
+function clearInfo() {
+  $("#time-info").empty();
+  $("#location-info").empty();
+  $("#weather-info").empty();
+  $("#weather-header").empty();
+  $("#k-info").empty();
+  $("#k-header").empty();
+}
+
+setInfo();
 var flightTrackerAPIKey = "9d54ab-f75b5f-1552a5-7e9966-5f549b"
 var flightTrackerUrl = "http://aviation-edge.com/api/public/flights?key=" + flightTrackerAPIKey;
 
@@ -63,11 +106,12 @@ $.ajax({
   // We store all of the retrieved data inside of this "response"
   .then(function(response) {
 
-      console.log(response);
+      //console.log(response);
        results = JSON.parse(response);
-      console.log(results[0].geography.latitude);
+      //console.log(results[0].geography.latitude);
 
-      mapMarkers();
+      // Commit out for SignIn demo
+      //mapMarkers();
  
   }
 )
@@ -105,6 +149,89 @@ function initMap() {
         
     });  
 
+$("#signUp").on("click", function (signUp) {
+  event.preventDefault();
+  email = $("#exampleDropdownFormEmail1").val();
+  password = $("#exampleDropdownFormPassword1").val();
+  console.log("signup test");
+  console.log(email);
+  console.log(password);
+
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+});
+
+
+$('input[type=checkbox]').click(function () {
+  console.log($(".form-check-input").is(":checked"))
+});
+
+
+$("#toolbar").on("click", "#signIn", function (signIn) {
+  event.preventDefault();
+  email = $("#exampleDropdownFormEmail1").val();
+  password = $("#exampleDropdownFormPassword1").val();
+  console.log("signin test");
+
+  $("#exampleDropdownFormPassword1").val('');
+  console.log(email);
+  console.log(password);
+
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    if (error) {
+      console.log("signIn Error");
+      console.log(error.code);
+      console.log(error.message);
+    }
+  });
+  //
+  firebase.auth().onAuthStateChanged(function (users) {
+    if (users) {
+      // User is signed in.
+      $('.dropdown-toggle').dropdown('toggle');
+      $("#dropdownMenuButton").replaceWith(
+        '<button type="submit" id="signOut" class="btn btn-primary">Sign Out</button>'
+      );
+      user = "signedIn";
+      signedIn();
+      console.log(user);
+    } else if (user == "signedOut") {
+      initMap();
+      // No user is signed in.
+    } else {}
+  });
+});
+
+
+$("#toolbar").on("click", "#signOut", function (signOut) {
+  event.preventDefault();
+
+  firebase.auth().signOut().then(function () {
+    console.log("Logged out!")
+
+    $("#signOut").replaceWith(
+      '<button class ="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</button >'
+    );
+    user = "signedOut";
+
+  }, function (error) {
+    console.log(error.code);
+    console.log(error.message);
+  });
+});
+
+function signedIn() {
+  if (user == "signedIn") {
+    mapMarkers();
+  } else {
+    initMap();
+  }
+}
+
 
 function updateCity(){
   
@@ -134,6 +261,7 @@ function updateCity(){
     event.preventDefault();
     updateCity();
   })
+
 
 
 
