@@ -2,7 +2,7 @@ var currentTime = moment();
 var currentDate = moment(currentTime).format("DD MMM YYYY");
 var time = moment(currentTime).format("h:mm A")
 var results=[];
-var weatherAPIKey = "f3b57377fd45d3c75ef5eb8b659e8ad3";
+var weatherAPIKey = "4b6c7091744da6c1ad4dcd9d3603fd15";
 // Here we can set the var city to a value coming from the flight tracker API
 // We can associate the ajax call to an on-click so that the city info can populate
 var city = "";
@@ -13,6 +13,7 @@ var weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
   "q=" + city +"&units=imperial&appid=" + weatherAPIKey;
   console.log(weatherURL);
 
+  var infowindow = null;
  
 // Here we run our AJAX call to the OpenWeatherMap API
 $.ajax({
@@ -85,7 +86,9 @@ function mapMarkers() {
       position: latlng,
       map: map,
       icon: "https://cdn2.iconfinder.com/data/icons/fatcow/32x32/plane.png"
+
     });
+    
   }
 }
 // Creates the google maps on the page
@@ -99,7 +102,10 @@ function initMap() {
         },
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
+        
     });  
+
+
 
     $("#precipitation" ).on( "click", function() {
     var myMapType = new google.maps.ImageMapType({
@@ -324,3 +330,4 @@ $("#reset").on("click", function(){
   initMap();
   mapMarkers();
 });
+
