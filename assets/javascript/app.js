@@ -314,3 +314,12 @@ $("#temperature").on("click", function() {
 }
 
 )
+
+var mapreset = $("#map").clone()
+
+
+$("#reset").on("click", function(){
+  $("#map").replaceWith(mapreset.clone())
+  $("#map").replaceWith(mapreset);
+  initMap();
+});
