@@ -24,10 +24,10 @@ $.ajax({
   .then(function(response) {
 
       console.log(response);
-      console.log("Location: "+ response.name + " lat: "+response.coord.lat+ " lon: " +response.coord.lon);
+      console.log("<div><br>"+ response.name + " lat: "+response.coord.lat+ " lon: " +response.coord.lon + "</div>");
       console.log(currentDate)
       $("#time-info").append("<div>" + currentDate +"</div><div>"+time+"</div>");
-      $("#location-info").append("<div>Location: "+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon + "</div>");
+      $("#location-info").append("<div>"+ response.name + ", lat: "+response.coord.lat+ " lon: " +response.coord.lon + "</div>");
       $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div>");
       $("#weather-header").append("<div><img id='weather-icon'src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>")
       console.log(response.weather[0].icon);
@@ -106,50 +106,37 @@ function initMap() {
     });  
 
 
+function updateCity(){
+  
+  var cityThatUserEntered =$("#cityInput").val().trim();
+  var cityState = cityThatUserEntered.split(",");
+  
+  for(key in cityState){
+    // cityState[key].trim();
+    cityState[key]=cityState[key].trim().replace(" ","_");
 
-    $("#precipitation" ).on( "click", function() {
-    var myMapType = new google.maps.ImageMapType({
-      getTileUrl: function(coord, zoom) {
-        var normalizedCoord = getNormalizedCoord(coord, zoom);
-        if (!normalizedCoord) {
-          return null;
-        }
-        var bound = Math.pow(2, zoom);
-        return "https://tile.openweathermap.org/map/precipitation_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
-},
-      tileSize: new google.maps.Size(256, 256),
-      maxZoom: 8,
-      minZoom: 0,
-      name: 'mymaptype'
-    });
-
-    function getNormalizedCoord(coord, zoom) {
-      var y = coord.y;
-      var x = coord.x;
-
-      
-      var tileRange = 1 << zoom;
-
-      
-      if (y < 0 || y >= tileRange) {
-        return null;
-      }
-
-      if (x < 0 || x >= tileRange) {
-        x = (x % tileRange + tileRange) % tileRange;
-      }
-
-      return {
-        x: x,
-        y: y
-      };
-    }
-
-    map.overlayMapTypes.insertAt(0, myMapType);
   }
 
-    )}
-   
+  var city = cityState[0];
+  var state = cityState[1];
+  console.log(city,state);
+
+  // figure out how to return value
+
+ 
+  
+  // $("#").val(key);
+}
+
+
+
+  $("#city-input-submit").on("click", function(event){
+    event.preventDefault();
+    updateCity();
+  })
+
+
+
 
 $("#clouds").on("click", function() {
   var myMapType = new google.maps.ImageMapType({
