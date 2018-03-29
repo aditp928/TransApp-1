@@ -445,4 +445,4 @@ $("#reset").on("click", function(){
   initMap();
   mapMarkers();
 });
-
+}
