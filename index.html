@@ -26,10 +26,7 @@
         <div class="row">
             <nav class="navbar navbar-light bg-light">
                 <div class = "col"><img src="assets/images/Small_Aeronyde_Logo.png" alt="Aeronyde logo"></div>
-                <div class = "col dropdown login-btn" id= "buttonIDContainer">
-                    <button class ="btn btn-secondary" type="button" id="search-database-btn">
-                        <a href="database.html">Search Database</a>
-                    </button>
+                <div class = "col dropdown login-btn" id= "toolbar">
                     <button class ="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Login
                     </button>    
@@ -52,17 +49,39 @@
                             <button type="submit" id= "signIn" class="btn btn-primary">Sign in</button>
                             <button type="submit" id= "signUp" class="btn btn-primary">Sign Up</button>
                         </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Placeholder</a>
-                        <a class="dropdown-item" href="#">Placeholder</a>
                     </div>
-                
+
+                    <div>
+                        <button class ="btn btn-secondary" type="button" id="search-database-btn">
+                            <a href="database.html">Search Database</a>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Change Location
+                        </button>
+                        <div class="dropdown-menu">
+                            <form class="px-4 py-3">
+                                <div class="form-group">
+                                    <label for="cityInput">City</label>
+                                    <input type="text" class="form-control" id="cityInput" placeholder="Orlando">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stateInput">State</label>
+                                    <input type="text" class="form-control" id="stateInput" placeholder="Florida">
+                                </div>
+                                <button type="submit" id="changePlace" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>   
+                    </div> 
                 </div>
             </nav>
-            
+        </div>
+        <div class="row" id="location-info">
             
         </div>
-        <div class="row" id="location-info"></div>
         <div class="card-group row">
                 <!-- time area -->
                 <div class="card border-light col" >

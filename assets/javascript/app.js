@@ -2,20 +2,43 @@ var currentTime = moment();
 var currentDate = moment(currentTime).format("DD MMM YYYY");
 var time = moment(currentTime).format("h:mm A")
 var results=[];
-var weatherAPIKey = "f3b57377fd45d3c75ef5eb8b659e8ad3";
+var weatherAPIKey = "35d92465c38b102428b9e6a476f2d719";
 // Here we can set the var city to a value coming from the flight tracker API
 // We can associate the ajax call to an on-click so that the city info can populate
-var city = "";
+var city = "Orlando";
+var state = "Florida";
+place = city + "," + state;
+console.log(place);
+
 // "city" must be city,state format to populate URL correctly. Ex below for console.log
-city = "orlando,florida";
+
 // Here we are building the URL we need to query the database
 var weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
-  "q=" + city +"&units=imperial&appid=" + weatherAPIKey;
+  "q=" + place +"&units=imperial&appid=" + weatherAPIKey;
   console.log(weatherURL);
 var user = "";
- 
+
+$("#changePlace").on("click", function(){
+  event.preventDefault();
+
+  city = $("#cityInput").val();
+  state = $("#stateInput").val();
+  place = city + "," + state;
+
+  weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
+    "q=" + place + "&units=imperial&appid=" + weatherAPIKey;
+  console.log(weatherURL);
+
+  clearInfo();
+  setInfo();
+
+  console.log(city);
+  console.log(state);
+});
+
 // Here we run our AJAX call to the OpenWeatherMap API
-$.ajax({
+function setInfo() {
+  $.ajax({
   url: weatherURL,
   method: "GET"
 })
@@ -30,6 +53,14 @@ $.ajax({
       $("#weather-info").append("<div>Temperature: " + response.main.temp +"</div><div>Wind Speed: "+ response.wind.speed +"</div><div>"+ response.weather[0].description +"</div>");
       $("#weather-header").append("<div><img id='weather-icon'src='http://openweathermap.org/img/w/"+ response.weather[0].icon +".png'></div>")
       console.log(response.weather[0].icon);
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: response.coord.lat,
+          lng: response.coord.lon,
+        },
+        zoom: 8
+      });
       
       // "+ response.weather[0].icon +"
     });
@@ -50,7 +81,18 @@ $.ajax({
       }
 
     })
+  }
 
+function clearInfo() {
+  $("#time-info").empty();
+  $("#location-info").empty();
+  $("#weather-info").empty();
+  $("#weather-header").empty();
+  $("#k-info").empty();
+  $("#k-header").empty();
+}
+
+setInfo();
 var flightTrackerAPIKey = "9d54ab-f75b5f-1552a5-7e9966-5f549b"
 var flightTrackerUrl = "http://aviation-edge.com/api/public/flights?key=" + flightTrackerAPIKey;
 
@@ -124,7 +166,7 @@ $('input[type=checkbox]').click(function () {
 });
 
 
-$("#buttonIDContainer").on("click", "#signIn", function (signIn) {
+$("#toolbar").on("click", "#signIn", function (signIn) {
   event.preventDefault();
   email = $("#exampleDropdownFormEmail1").val();
   password = $("#exampleDropdownFormPassword1").val();
@@ -160,7 +202,7 @@ $("#buttonIDContainer").on("click", "#signIn", function (signIn) {
 });
 
 
-$("#buttonIDContainer").on("click", "#signOut", function (signOut) {
+$("#toolbar").on("click", "#signOut", function (signOut) {
   event.preventDefault();
 
   firebase.auth().signOut().then(function () {
