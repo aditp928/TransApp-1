@@ -20,18 +20,13 @@
     <!-- Link to Moment.js -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     
-    <!-- links to firebase -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <nav class="navbar navbar-light bg-light">
                 <div class = "col"><img src="assets/images/Small_Aeronyde_Logo.png" alt="Aeronyde logo"></div>
-                <div class = "col dropdown login-btn">
-                    <button class ="btn btn-secondary" type="button" id="search-database-btn">
-                        <a href="database.html">Search Database</a>
-                    </button>
+                <div class = "col dropdown login-btn" id= "toolbar">
                     <button class ="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Login
                     </button>    
@@ -42,7 +37,7 @@
                             <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
                             </div>
                             <div class="form-group">
-                            <label for="exampleDropdownFormPassword1">Password</label>
+                            <label for="exampleDropdownFormPassword1">Password (min= 6)</label>
                             <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
                             </div>
                             <div class="form-check">
@@ -51,19 +46,42 @@
                                 Remember me
                             </label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
+                            <button type="submit" id= "signIn" class="btn btn-primary">Sign in</button>
+                            <button type="submit" id= "signUp" class="btn btn-primary">Sign Up</button>
                         </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">New around here? Sign up</a>
-                        <a class="dropdown-item" href="#">Forgot password?</a>
                     </div>
-                
+
+                    <div>
+                        <button class ="btn btn-secondary" type="button" id="search-database-btn">
+                            <a href="database.html">Search Database</a>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Change Location
+                        </button>
+                        <div class="dropdown-menu">
+                            <form class="px-4 py-3">
+                                <div class="form-group">
+                                    <label for="cityInput">City</label>
+                                    <input type="text" class="form-control" id="cityInput" placeholder="Orlando">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stateInput">State</label>
+                                    <input type="text" class="form-control" id="stateInput" placeholder="Florida">
+                                </div>
+                                <button type="submit" id="changePlace" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>   
+                    </div> 
                 </div>
             </nav>
-            
+        </div>
+        <div class="row" id="location-info">
             
         </div>
-        <div class="row" id="location-info"></div>
         <div class="card-group row">
                 <!-- time area -->
                 <div class="card border-light col" >
@@ -123,6 +141,19 @@
     <!-- Links our js file -->
     <script src = "assets/javascript/app.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9_3Tyu14z8VAgV3n0JKBk2uhi5Jqve4M&callback=initMap">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDWiagn4hJsgggnvLE-La_vdlzeuQJg-og",
+            authDomain: "transapp-24ada.firebaseapp.com",
+            databaseURL: "https://transapp-24ada.firebaseio.com",
+            projectId: "transapp-24ada",
+            storageBucket: "",
+            messagingSenderId: "200543680775"
+        };
+        firebase.initializeApp(config);
     </script>
 </body>
 </html>
