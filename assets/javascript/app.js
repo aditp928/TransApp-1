@@ -12,7 +12,7 @@ city = "orlando,florida";
 var weatherURL = "http://api.openweathermap.org/data/2.5/weather?" +
   "q=" + city +"&units=imperial&appid=" + weatherAPIKey;
   console.log(weatherURL);
-
+var user = "";
  
 // Here we run our AJAX call to the OpenWeatherMap API
 $.ajax({
@@ -62,11 +62,12 @@ $.ajax({
   // We store all of the retrieved data inside of this "response"
   .then(function(response) {
 
-      console.log(response);
+      //console.log(response);
        results = JSON.parse(response);
-      console.log(results[0].geography.latitude);
+      //console.log(results[0].geography.latitude);
 
-      mapMarkers();
+      // Commit out for SignIn demo
+      //mapMarkers();
  
   }
 )
@@ -101,5 +102,86 @@ function initMap() {
     });  
 } 
 
-   
+$("#signUp").on("click", function (signUp) {
+  event.preventDefault();
+  email = $("#exampleDropdownFormEmail1").val();
+  password = $("#exampleDropdownFormPassword1").val();
+  console.log("signup test");
+  console.log(email);
+  console.log(password);
+
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+});
+
+
+$('input[type=checkbox]').click(function () {
+  console.log($(".form-check-input").is(":checked"))
+});
+
+
+$("#buttonIDContainer").on("click", "#signIn", function (signIn) {
+  event.preventDefault();
+  email = $("#exampleDropdownFormEmail1").val();
+  password = $("#exampleDropdownFormPassword1").val();
+  console.log("signin test");
+
+  $("#exampleDropdownFormPassword1").val('');
+  console.log(email);
+  console.log(password);
+
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    if (error) {
+      console.log("signIn Error");
+      console.log(error.code);
+      console.log(error.message);
+    }
+  });
+  //
+  firebase.auth().onAuthStateChanged(function (users) {
+    if (users) {
+      // User is signed in.
+      $('.dropdown-toggle').dropdown('toggle');
+      $("#dropdownMenuButton").replaceWith(
+        '<button type="submit" id="signOut" class="btn btn-primary">Sign Out</button>'
+      );
+      user = "signedIn";
+      signedIn();
+      console.log(user);
+    } else if (user == "signedOut") {
+      initMap();
+      // No user is signed in.
+    } else {}
+  });
+});
+
+
+$("#buttonIDContainer").on("click", "#signOut", function (signOut) {
+  event.preventDefault();
+
+  firebase.auth().signOut().then(function () {
+    console.log("Logged out!")
+
+    $("#signOut").replaceWith(
+      '<button class ="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</button >'
+    );
+    user = "signedOut";
+
+  }, function (error) {
+    console.log(error.code);
+    console.log(error.message);
+  });
+});
+
+function signedIn() {
+  if (user == "signedIn") {
+    mapMarkers();
+  } else {
+    initMap();
+  }
+}
 
