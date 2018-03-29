@@ -2,7 +2,9 @@ var currentTime = moment();
 var currentDate = moment(currentTime).format("DD MMM YYYY");
 var time = moment(currentTime).format("h:mm A")
 var results=[];
-var weatherAPIKey = "35d92465c38b102428b9e6a476f2d719";
+
+var weatherAPIKey = "4b6c7091744da6c1ad4dcd9d3603fd15";
+
 // Here we can set the var city to a value coming from the flight tracker API
 // We can associate the ajax call to an on-click so that the city info can populate
 var city = "Orlando";
@@ -128,7 +130,9 @@ function mapMarkers() {
       position: latlng,
       map: map,
       icon: "https://cdn2.iconfinder.com/data/icons/fatcow/32x32/plane.png"
+
     });
+    
   }
 }
 // Creates the google maps on the page
@@ -140,9 +144,10 @@ function initMap() {
             lat: 28.54,
             lng: -81.38
         },
-        zoom: 8
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        
     });  
-} 
 
 $("#signUp").on("click", function (signUp) {
   event.preventDefault();
@@ -226,4 +231,231 @@ function signedIn() {
     initMap();
   }
 }
+
+
+
+    $("#precipitation" ).on( "click", function() {
+    var myMapType = new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom) {
+        var normalizedCoord = getNormalizedCoord(coord, zoom);
+        if (!normalizedCoord) {
+          return null;
+        }
+        var bound = Math.pow(2, zoom);
+        return "https://tile.openweathermap.org/map/precipitation_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
+},
+      tileSize: new google.maps.Size(256, 256),
+      maxZoom: 8,
+      minZoom: 0,
+      name: 'mymaptype'
+    });
+
+    function getNormalizedCoord(coord, zoom) {
+      var y = coord.y;
+      var x = coord.x;
+
+      
+      var tileRange = 1 << zoom;
+
+      
+      if (y < 0 || y >= tileRange) {
+        return null;
+      }
+
+      if (x < 0 || x >= tileRange) {
+        x = (x % tileRange + tileRange) % tileRange;
+      }
+
+      return {
+        x: x,
+        y: y
+      };
+    }
+
+    map.overlayMapTypes.insertAt(0, myMapType);
+  }
+
+    )}
+   
+
+
+$("#clouds").on("click", function() {
+  var myMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      var normalizedCoord = getNormalizedCoord(coord, zoom);
+      if (!normalizedCoord) {
+        return null;
+      }
+      var bound = Math.pow(2, zoom);
+      return "https://tile.openweathermap.org/map/clouds_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
+},
+    tileSize: new google.maps.Size(256, 256),
+    maxZoom: 8,
+    minZoom: 0,
+    name: 'mymaptype'
+  });
+
+  function getNormalizedCoord(coord, zoom) {
+    var y = coord.y;
+    var x = coord.x;
+
+    
+    var tileRange = 1 << zoom;
+
+    
+    if (y < 0 || y >= tileRange) {
+      return null;
+    }
+
+    if (x < 0 || x >= tileRange) {
+      x = (x % tileRange + tileRange) % tileRange;
+    }
+
+    return {
+      x: x,
+      y: y
+    };
+  }
+
+  map.overlayMapTypes.insertAt(0, myMapType);
+}
+
+)
+$("#sealevel").on("click", function() {
+  var myMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      var normalizedCoord = getNormalizedCoord(coord, zoom);
+      if (!normalizedCoord) {
+        return null;
+      }
+      var bound = Math.pow(2, zoom);
+      return "https://tile.openweathermap.org/map/pressure_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
+},
+    tileSize: new google.maps.Size(256, 256),
+    maxZoom: 8,
+    minZoom: 0,
+    name: 'mymaptype'
+  });
+
+  function getNormalizedCoord(coord, zoom) {
+    var y = coord.y;
+    var x = coord.x;
+
+    
+    var tileRange = 1 << zoom;
+
+    
+    if (y < 0 || y >= tileRange) {
+      return null;
+    }
+
+    if (x < 0 || x >= tileRange) {
+      x = (x % tileRange + tileRange) % tileRange;
+    }
+
+    return {
+      x: x,
+      y: y
+    };
+  }
+
+  map.overlayMapTypes.insertAt(0, myMapType);
+}
+
+)
+$("#windspeed").on("click", function() {
+  var myMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      var normalizedCoord = getNormalizedCoord(coord, zoom);
+      if (!normalizedCoord) {
+        return null;
+      }
+      var bound = Math.pow(2, zoom);
+      return "https://tile.openweathermap.org/map/wind_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
+},
+    tileSize: new google.maps.Size(256, 256),
+    maxZoom: 8,
+    minZoom: 0,
+    name: 'mymaptype'
+  });
+
+  function getNormalizedCoord(coord, zoom) {
+    var y = coord.y;
+    var x = coord.x;
+
+    
+    var tileRange = 1 << zoom;
+
+    
+    if (y < 0 || y >= tileRange) {
+      return null;
+    }
+
+    if (x < 0 || x >= tileRange) {
+      x = (x % tileRange + tileRange) % tileRange;
+    }
+
+    return {
+      x: x,
+      y: y
+    };
+  }
+
+  map.overlayMapTypes.insertAt(0, myMapType);
+}
+
+)
+
+$("#temperature").on("click", function() {
+  var myMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      var normalizedCoord = getNormalizedCoord(coord, zoom);
+      if (!normalizedCoord) {
+        return null;
+      }
+      var bound = Math.pow(2, zoom);
+      return "https://tile.openweathermap.org/map/temp_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
+},
+    tileSize: new google.maps.Size(256, 256),
+    maxZoom: 8,
+    minZoom: 0,
+    name: 'mymaptype'
+  });
+
+  function getNormalizedCoord(coord, zoom) {
+    var y = coord.y;
+    var x = coord.x;
+
+    
+    var tileRange = 1 << zoom;
+
+    
+    if (y < 0 || y >= tileRange) {
+      return null;
+    }
+
+    if (x < 0 || x >= tileRange) {
+      x = (x % tileRange + tileRange) % tileRange;
+    }
+
+    return {
+      x: x,
+      y: y
+    };
+  }
+
+  map.overlayMapTypes.insertAt(0, myMapType);
+}
+
+)
+
+var mapreset = $("#map").clone()
+
+
+$("#reset").on("click", function(){
+  $("#map").replaceWith(mapreset.clone())
+  $("#map").replaceWith(mapreset);
+  initMap();
+  mapMarkers();
+});
 
