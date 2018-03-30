@@ -19,14 +19,14 @@ nav {
     text-align: right;
 }
 #location-info {
-    background-color: rgb(115, 97, 228);
+    background-color: rgb(48, 62, 130);
     color:white;
     border: 1px solid lightgrey;
     
     padding: 10px;
 }
 .btn{
-    background-color: darkslateblue;
+    background-color: rgb(48, 62, 130);
 }
 .btn:hover{
     background-color: rgb(97, 84, 180);
