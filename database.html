@@ -17,7 +17,6 @@
     
     <!-- links to style sheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- Link to Moment.js -->
     
     <!-- links to firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -34,53 +33,29 @@
                             <button class ="btn btn-secondary" type="button" id="search-database-btn">
                                 <a href="index.html">Home</a>
                             </button>
-                            <button class ="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Login
-                            </button>    
-                            <div class="dropdown-menu">
-                                <form class="px-4 py-3">
-                                    <div class="form-group">
-                                    <label for="exampleDropdownFormEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="exampleDropdownFormPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                                    <label class="form-check-label" for="dropdownCheck">
-                                        Remember me
-                                    </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Sign in</button>
-                                </form>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">New around here? Sign up</a>
-                                <a class="dropdown-item" href="#">Forgot password?</a>
-                            </div>
-                        
                         </div>
                     </nav>
                 </div>
 
+                <h1 class="database-header">Database Search Tool</h1>
+
+                <!-- Input box -->
                 <div class="row">
-                    <!-- N-Number, Certification -->
-                    <!-- n-number, aircraft type, certification and uses, cert issue date, expiration date, registrant type, Owner info-->
                         <div class="card col-4" id="input-form-box">
                                 <div class="card-header">Search</div>
                                 <div class="card-body">
+                                    <!-- n-number input -->
                                         <label for="n-number-input">N-Number</label>
                                         <div class="input-group mb-3">
                                                 <input type="text" class="form-control" id="n-number-input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                             </div>
-                                        
+                                    <!-- aircraft type input -->
                                                     <label for="aircraft-type-select">Aircraft Type</label>
                                                     <div class="input-group mb-3">
                                                     <select class="custom-select" id="aircraft-type-select">
                                                       <option selected>choose one..</option>
                                                       <option value="1">Glider</option>
-                                                      <option value="2">Baloon</option>
+                                                      <option value="2">Balloon</option>
                                                       <option value="3">Blimp/Derigible</option>
                                                       <option value="4">Fixed Wing Single Engine</option>
                                                       <option value="5">Fixed Wing Multi Engine</option>
@@ -91,7 +66,8 @@
                                                     </select>
                                                   </div>    
 
-                                                  <label for="engine-type-select">Aircraft Type</label>
+                                    <!-- engine type input -->
+                                                  <label for="engine-type-select">Engine Type</label>
                                                     <div class="input-group mb-3">
                                                     <select class="custom-select" id="engine-type-select">
                                                       <option selected>choose one..</option>
@@ -111,27 +87,21 @@
                                         <div class="input-group mb-3">        
                                             <button type="button" id="submit-button" class="btn btn-info">Submit</button>
                                         </div>
-                
-                    
                                 </div>
                         </div>
-
-                        <div class="card col-8" id="results-table">
+                        <div class="col-1"></div>
+                        
+                        <!-- results table -->
+                        <div class="card col-7" id="results-table">
                                 <div class="card-header">Results</div>
                                 <div class="card-body" id="results-body">
                                         <table style="width:100%">
-                                            <!-- n-number, aircraft type, certification and uses, cert issue date, expiration date, registrant type, Owner info-->
                                                 <tr class="schedule-headers">
-                                                  <th>N-number</th>
+                                                  <th>N-Number</th>
                                                   <th>Craft Type</th> 
-                                                  <th>Cert and Uses</th>
-                                                  <th>Cert Issue Date</th>
                                                   <th>Cert Exp Date</th>
                                                   <th>Reg Type</th>
-                                                  <th>Owner Info</th>
                                                 </tr>
-                                                <div class="search-results">
-                                                </div>
                                               </table>
                                 </div>
                         </div>
