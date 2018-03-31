@@ -17,24 +17,106 @@
     
     <!-- links to style sheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- Link to Moment.js -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     
     <!-- links to firebase -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 </head>
 <body>
 
     
         
+        <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-light bg-light">
+                        <div class = "col"><img src="assets/images/Small_Aeronyde_Logo.png" alt="Aeronyde logo"></div>
+                        <div class = "col dropdown login-btn">
+                            <button class ="btn btn-secondary" type="button" id="search-database-btn">
+                                <a href="index.html">Home</a>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
 
+                <h1 class="database-header">Database Search Tool</h1>
+
+                <!-- Input box -->
+                <div class="row">
+                        <div class="card col-4" id="input-form-box">
+                                <div class="card-header">Search</div>
+                                <div class="card-body">
+                                    <!-- n-number input -->
+                                        <label for="n-number-input">N-Number</label>
+                                        <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="n-number-input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
+                                    <!-- aircraft type input -->
+                                                    <label for="aircraft-type-select">Aircraft Type</label>
+                                                    <div class="input-group mb-3">
+                                                    <select class="custom-select" id="aircraft-type-select">
+                                                      <option selected>choose one..</option>
+                                                      <option value="1">Glider</option>
+                                                      <option value="2">Balloon</option>
+                                                      <option value="3">Blimp/Derigible</option>
+                                                      <option value="4">Fixed Wing Single Engine</option>
+                                                      <option value="5">Fixed Wing Multi Engine</option>
+                                                      <option value="6">Weight-Shift-Control</option>
+                                                      <option value="7">Rotorcraft</option>
+                                                      <option value="8">Powered Parachute</option>
+                                                      <option value="9">Gyroplane</option>
+                                                    </select>
+                                                  </div>    
+
+                                    <!-- engine type input -->
+                                                  <label for="engine-type-select">Engine Type</label>
+                                                    <div class="input-group mb-3">
+                                                    <select class="custom-select" id="engine-type-select">
+                                                      <option selected>choose one..</option>
+                                                      <option value="1">None</option>
+                                                      <option value="2">Reciprocating</option>
+                                                      <option value="3">Turbo-Prop</option>
+                                                      <option value="4">Turbo-Jet</option>
+                                                      <option value="5">Turbo-Fan</option>
+                                                      <option value="6">Ramjet</option>
+                                                      <option value="7">Two-Cycle</option>
+                                                      <option value="8">Four-Cycle</option>
+                                                      <option value="9">Unknown</option>
+                                                      <option value="10">Electric</option>
+                                                      <option value="11">Rotary</option>
+                                                    </select>
+                                                  </div> 
+                                        <div class="input-group mb-3">        
+                                            <button type="button" id="submit-button" class="btn btn-info">Submit</button>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-1"></div>
+                        
+                        <!-- results table -->
+                        <div class="card col-7" id="results-table">
+                                <div class="card-header">Results</div>
+                                <div class="card-body" id="results-body">
+                                        <table style="width:100%">
+                                                <tr class="schedule-headers">
+                                                  <th>N-Number</th>
+                                                  <th>Craft Type</th> 
+                                                  <th>Cert Exp Date</th>
+                                                  <th>Reg Type</th>
+                                                </tr>
+                                              </table>
+                                </div>
+                        </div>
     
+                </div>
+    
+            </div>
+
+
     <!-- Links Bootstrap script  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Links our js file -->
     <script src = "assets/javascript/app.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9_3Tyu14z8VAgV3n0JKBk2uhi5Jqve4M&callback=initMap">
-    </script>
+    <script src = "assets/javascript/database.js"></script>
+    
 </body>
 </html>

@@ -81,3 +81,23 @@ a:hover{
     text-align: center;
     margin-top: 10px;
 }
+
+/* Start database.html css */
+
+#input-form-box {
+    margin-top: 20px;
+}
+
+#results-table {
+    margin-top: 20px;
+    height: 500px;
+    overflow: scroll;
+}
+
+tr {
+    border-bottom: solid 1px black;
+}
+
+.database-header{
+    text-align: center;
+}
