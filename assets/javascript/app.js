@@ -263,7 +263,49 @@ function updateCity(){
   })
 
 
+  $("#precipitation" ).on( "click", function() {
+    var myMapType = new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom) {
+        var normalizedCoord = getNormalizedCoord(coord, zoom);
+        if (!normalizedCoord) {
+          return null;
+        }
+        var bound = Math.pow(2, zoom);
+        return "https://tile.openweathermap.org/map/precipitation_new/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".png?appid=4b6c7091744da6c1ad4dcd9d3603fd15" ;
+},
+      tileSize: new google.maps.Size(256, 256),
+      maxZoom: 8,
+      minZoom: 0,
+      name: 'mymaptype'
+    });
 
+    function getNormalizedCoord(coord, zoom) {
+      var y = coord.y;
+      var x = coord.x;
+
+      
+      var tileRange = 1 << zoom;
+
+      
+      if (y < 0 || y >= tileRange) {
+        return null;
+      }
+
+      if (x < 0 || x >= tileRange) {
+        x = (x % tileRange + tileRange) % tileRange;
+      }
+
+      return {
+        x: x,
+        y: y
+      };
+    }
+
+    map.overlayMapTypes.insertAt(0, myMapType);
+  }
+
+    )}
+   
 
 
 $("#clouds").on("click", function() {
@@ -445,4 +487,3 @@ $("#reset").on("click", function(){
   initMap();
   mapMarkers();
 });
-}
